@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import { getAuth } from "@clerk/express";``
+import { getAuth } from "@clerk/express";
 import Comment from "../models/comment.model.js";
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
