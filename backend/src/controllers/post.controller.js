@@ -88,7 +88,7 @@ export const createPost = asyncHandler(async (req, res) => {
         folder: "social_media_posts",
         resource_type: "image",
         transformation: [
-          { with: 800, height: 600, crop: "limit" },
+          { width: 800, height: 600, crop: "limit" },
           { quality: "auto" },
           { format: "auto" },
         ],
