@@ -4,7 +4,7 @@ import { clerkMiddleware } from "@clerk/express";
 
 import userRoutes from "./routes/user.route.js";
 import postRoutes from "./routes/post.route.js";
-import commentRoutes from './routes/comment.route.js';
+import commentRoutes from "./routes/comment.route.js";
 import notificationRoutes from "./routes/notification.route.js";
 
 import { EVN } from "./config/env.js";
@@ -23,8 +23,8 @@ app.get("/api/", (req, res) => res.send("Hello connection"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
-app.use('/api/comments', commentRoutes);
-app.use('/api/notifications', notificationRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 //error handling
 app.use((err, req, res, next) => {
@@ -35,9 +35,12 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(EVN.PORT, () =>
-      console.log(`Server running on PORT: ${EVN.PORT}`)
-    );
+
+    if (EVN.PORT !== "production") {
+      app.listen(EVN.PORT, () =>
+        console.log(`Server running on PORT: ${EVN.PORT}`)
+      );
+    }
   } catch (error) {
     console.log("Failed to start server:", error.message);
     process.exit(1);
